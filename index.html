@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Pembelajaran UMT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1e1e1e;
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: #4285f4;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .auth-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .user-info {
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        
+        .user-email {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #4285f4;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #3367d6;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .main-content {
+            padding: 2rem;
+        }
+        
+        .breadcrumb {
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .filter-tab {
+            padding: 1rem 0;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-tab.active {
+            border-bottom-color: #4285f4;
+            color: #4285f4;
+        }
+        
+        .search-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 1rem 1.5rem;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 2rem;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .search-bar::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .video-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #2d2d2d, #3d3d3d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(66, 133, 244, 0.1), rgba(52, 168, 83, 0.1));
+        }
+        
+        .umt-logo {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .umt-logo .logo-text {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.5rem;
+        }
+        
+        .video-title-overlay {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .video-info {
+            padding: 1.5rem;
+        }
+        
+        .video-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .video-creator {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .video-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .tag.baru {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .tag.gratis {
+            background: #51cf66;
+            color: white;
+        }
+        
+        .tag.premium {
+            background: #4285f4;
+            color: white;
+        }
+        
+        .premium-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 3;
+        }
+        
+        .access-info {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .access-granted {
+            background: rgba(81, 207, 102, 0.2);
+            border: 1px solid #51cf66;
+            color: #51cf66;
+        }
+        
+        .access-denied {
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid #ff6b6b;
+            color: #ff6b6b;
+        }
+        
+        .login-required {
+            background: rgba(66, 133, 244, 0.2);
+            border: 1px solid #4285f4;
+            color: #4285f4;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo">UMT</div>
+            <h1>Video Pembelajaran UMT</h1>
+        </div>
+        
+        <div class="auth-section">
+            <div id="userInfo" class="user-info">
+                <span id="userEmail" class="user-email"></span>
+                <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+            </div>
+            <a href="login.html" id="loginBtn" class="btn btn-primary">Login</a>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <nav class="breadcrumb">
+            Home > Video Pembelajaran UMT
+        </nav>
+        
+        <h1 class="page-title">Video Pembelajaran UMT</h1>
+        
+        <div class="filter-tabs">
+            <div class="filter-tab active" onclick="filterVideos('all')">Semua</div>
+            <div class="filter-tab" onclick="filterVideos('baru')">Baru</div>
+            <div class="filter-tab" onclick="filterVideos('gratis')">Gratis</div>
+            <div class="filter-tab" onclick="filterVideos('premium')">Premium</div>
+        </div>
+        
+        <input type="text" class="search-bar" placeholder="Cari video pembelajaran..." onkeyup="searchVideos(this.value)">
+        
+        <div class="video-grid" id="videoGrid">
+            <!-- Video Cards akan di-generate oleh JavaScript -->
+        </div>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-auth-compat.min.js"></script>
+    
+    <!-- Load configurations -->
+    <script src="config/firebase-config.js"></script>
+    <script src="auth.js"></script>
+    
+    <script>
+        // Data video pembelajaran
+        const videosData = [
+            {
+                id: 'nilai-mutlak',
+                title: 'Nilai Mutlak',
+                creator: 'Tim UMT',
+                tags: ['baru', 'gratis'],
+                isPremium: false,
+                filename: 'nilai-mutlak.html'
+            },
+            {
+                id: 'limit-fungsi',
+                title: 'Limit Fungsi',
+                creator: 'Tim UMT',
+                tags: ['baru', 'premium'],
+                isPremium: true,
+                filename: 'limit-fungsi.html'
+            },
+            {
+                id: 'trigonometri',
+                title: 'Trigonometri',
+                creator: 'Tim UMT',
+                tags: ['premium'],
+                isPremium: true,
+                filename: 'trigonometri.html'
+            },
+            {
+                id: 'bentuk-akar',
+                title: 'Bentuk Akar',
+                creator: 'Tim UMT',
+                tags: ['baru', 'premium'],
+                isPremium: true,
+                filename: 'bentuk-akar.html'
+            }
+        ];
+        
+        let currentFilter = 'all';
+        let currentUser = null;
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderVideos();
+            
+            // Listen for auth state changes
+            if (window.firebaseAuth) {
+                window.firebaseAuth.auth.onAuthStateChanged((user) => {
+                    currentUser = user;
+                    renderVideos();
+                });
+            }
+        });
+        
+        function renderVideos() {
+            const videoGrid = document.getElementById('videoGrid');
+            videoGrid.innerHTML = '';
+            
+            const filteredVideos = videosData.filter(video => {
+                if (currentFilter === 'all') return true;
+                return video.tags.includes(currentFilter);
+            });
+            
+            filteredVideos.forEach(video => {
+                const videoCard = createVideoCard(video);
+                videoGrid.appendChild(videoCard);
+            });
+        }
+        
+        function createVideoCard(video) {
+            const card = document.createElement('div');
+            card.className = 'video-card';
+            card.onclick = () => handleVideoClick(video);
+            
+            const accessStatus = getAccessStatus(video);
+            
+            card.innerHTML = `
+                <div class="video-thumbnail">
+                    ${video.isPremium ? '<div class="premium-badge">PREMIUM</div>' : ''}
+                    <div class="umt-logo">
+                        <div class="logo-text">Understanding<br>The Mathematical<br>Thinking</div>
+                    </div>
+                    <div class="video-title-overlay">${video.title}</div>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title">${video.title}</h3>
+                    <p class="video-creator">${video.creator}</p>
+                    <div class="video-tags">
+                        ${video.tags.map(tag => `<span class="tag ${tag}">${tag.toUpperCase()}</span>`).join('')}
+                    </div>
+                    <div class="access-info ${accessStatus.class}">
+                        ${accessStatus.message}
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        function getAccessStatus(video) {
+            if (!currentUser) {
+                return {
+                    class: 'login-required',
+                    message: '🔐 Login diperlukan untuk mengakses'
+                };
+            }
+            
+            if (!currentUser.emailVerified || !window.firebaseAuth.allowedEmails.includes(currentUser.email)) {
+                return {
+                    class: 'access-denied',
+                    message: '❌ Email tidak memiliki akses'
+                };
+            }
+            
+            if (video.isPremium && !window.firebaseAuth.premiumEmails.includes(currentUser.email)) {
+                return {
+                    class: 'access-denied',
+                    message: '⭐ Memerlukan akses premium'
+                };
+            }
+            
+            return {
+                class: 'access-granted',
+                message: '✅ Anda dapat mengakses video ini'
+            };
+        }
+        
+        function handleVideoClick(video) {
+            if (!currentUser) {
+                // Simpan video yang ingin diakses untuk redirect setelah login
+                localStorage.setItem('redirectAfterLogin', `videos/${video.filename}`);
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            if (!currentUser.emailVerified) {
+                window.authManager.showMessage('Silakan verifikasi email Anda terlebih dahulu.', 'error');
+                return;
+            }
+            
+            if (!window.firebaseAuth.allowedEmails.includes(currentUser.email)) {
+                window.authManager.showMessage('Email Anda tidak memiliki akses ke konten ini.', 'error');
+                return;
+            }
+            
+            if (video.isPremium && !window.firebaseAuth.premiumEmails.includes(currentUser.email)) {
+                window.authManager.showMessage('Video ini memerlukan akses premium.', 'error');
+                return;
+            }
+            
+            // Redirect ke halaman video
+            window.location.href = `videos/${video.filename}`;
+        }
+        
+        function filterVideos(filter) {
+            currentFilter = filter;
+            
+            // Update active tab
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            renderVideos();
+        }
+        
+        function searchVideos(query) {
+            const videoGrid = document.getElementById('videoGrid');
+            videoGrid.innerHTML = '';
+            
+            const filteredVideos = videosData.filter(video => {
+                const matchesFilter = currentFilter === 'all' || video.tags.includes(currentFilter);
+                const matchesSearch = video.title.toLowerCase().includes(query.toLowerCase()) ||
+                                    video.creator.toLowerCase().includes(query.toLowerCase());
+                return matchesFilter && matchesSearch;
+            });
+            
+            filteredVideos.forEach(video => {
+                const videoCard = createVideoCard(video);
+                videoGrid.appendChild(videoCard);
+            });
+        }
+    </script>
+</body>
+</html>
