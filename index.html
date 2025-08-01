@@ -1,0 +1,3065 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tryout UMT</title>
+    <meta name="description" content="Bank soal lengkap untuk PAS, PTS, UAS, UTS, olimpiade, cpns-kedinasan, dan kompetisi-umt dari UMT">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMTacademy - Belajar Matematika Lengkap & Interaktif</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="UMT-Logo - Copy (4).png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #141414;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* Header Section */
+        .header {
+            background: #141414;
+            padding: 0px 0px 10px 0px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 20px 0px 20px;
+        }
+
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #888;
+        }
+
+        .breadcrumb-link {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .breadcrumb-link:hover {
+            color: white;
+        }
+        .breadcrumb-arrow {
+            color: #666;
+            font-size: 14px;
+        }
+        .breadcrumb-current {
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Dropdown Styles */
+        /* .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            color: var(--text-primary);
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: var(--transition);
+            background: rgba(74, 144, 226, 0.1);
+        } */
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+            font-size: 14px;
+        }
+
+        .dropdown-toggle:hover {
+            color: #007bff;
+        }
+
+        .dropdown-arrow {
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 16px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #333;
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown-item:first-child {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dropdown-item:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        /* Main Title */
+        .main-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Tab Navigation */
+        /* .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 4px;
+        } */
+
+        /* .tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .tabs::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #333;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            color: #888;
+            cursor: pointer;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            font-size: 16px;
+            flex-wrap: nowrap;
+        }
+
+        .tab.active {
+            color: white;
+            border-bottom-color: white;
+            font-size: 16px;
+        }
+
+        .tab:hover {
+            color: white;
+        }
+        .tab:hover:not(.active) {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        } */
+
+        .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    flex-wrap: nowrap; /* Paksa tidak wrap ke baris baru */
+}
+
+.tabs::-webkit-scrollbar { /* WebKit */
+    display: none;
+}
+
+.tabs::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #333;
+}
+
+.tab {
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    font-size: 16px;
+    flex-shrink: 0; /* Tidak boleh mengecil */
+    min-width: fit-content;
+    flex-basis: auto; /* Ukuran otomatis sesuai konten */
+}
+
+.tab.active {
+    color: white;
+    border-bottom-color: white;
+    font-size: 14px;
+}
+
+.tab:hover {
+    color: white;
+}
+
+.tab:hover:not(.active) {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+        /* Search Container */
+        .search-container {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 50px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #888;
+            box-shadow: #888;
+        }
+
+        .search-input::placeholder {
+            color: #888;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: linear-gradient(145deg, #2a2a2a 0%, #1f1f1f 100%);
+            border-radius: 16px;
+            padding: 24px;
+            width: 280px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+            border-color: #444;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4a90e2, #50e3c2);
+        }
+
+        /* .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: var(--transition);
+        } */
+         .title1 {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+
+        .subtitle {
+            color: #888;
+            font-size: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: 12px;
+        }
+
+        .card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-card);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        .card-image {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--border-radius);
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .card-author {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .category {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .card-tag {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            color: white;
+        }
+
+        .tag-UTBK { background: linear-gradient(135deg, #e67e22, #d35400); }
+        .tag-olimpiade { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+        .tag-CPNS-KEDINASAN { background: linear-gradient(135deg, #1abc9c, #16a085); }
+        .tag-kompetisi-umt { background: linear-gradient(135deg, #34495e, #2c3e50); }
+
+        .tag-free {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+    border: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+}
+
+.tag-free:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+/* Tag Premium */
+.tag-premium {
+    background: linear-gradient(135deg, #007bff, #6f42c1);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+    border: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+}
+
+.tag-premium::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.tag-premium:hover::before {
+    left: 100%;
+}
+
+.tag-premium:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+/* Variasi dengan Icon */
+.tag-free-icon::before {
+    content: '🆓';
+    margin-right: 4px;
+}
+
+.tag-premium-icon::before {
+    content: '⭐';
+    margin-right: 4px;
+}
+
+/* Variasi Outline */
+.tag-free-outline {
+    background: transparent;
+    color: #28a745;
+    border: 2px solid #28a745;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.tag-free-outline:hover {
+    background: #28a745;
+    color: white;
+    transform: translateY(-1px);
+}
+
+.tag-premium-outline {
+    background: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.tag-premium-outline:hover {
+    background: #007bff;
+    color: white;
+    transform: translateY(-1px);
+}
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .pagination-btn {
+            background: #333;
+            border: 1px solid #444;
+            color: #888;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            min-width: 40px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pagination-btn:hover:not(.disabled) {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .pagination-btn.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-ellipsis {
+            color: #888;
+            padding: 10px 5px;
+            font-size: 14px;
+        }
+
+        .pagination-nav {
+            background: #333;
+            border: 1px solid #444;
+            color: #888;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .pagination-nav:hover:not(.disabled) {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .pagination-nav.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        .loading::after {
+            content: '';
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 12px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container2 {
+                display: flex;
+                justify-content: center; /* horizontal */
+                align-items: center; 
+            }
+            .cards-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                margin-bottom: 3rem;
+            }
+            /* .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            }    */
+            /* .container {
+                padding: 0 16px;
+            }
+
+            .header {
+                padding: 1.5rem 0;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .tabs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .tab {
+                text-align: center;
+                padding: 16px;
+            }
+
+            .breadcrumb {
+                font-size: 12px;
+                gap: 8px;
+            }
+
+            .pagination-container {
+                gap: 4px;
+                padding: 0 16px;
+            }
+
+            .pagination-btn,
+            .pagination-nav {
+                padding: 8px 12px;
+                font-size: 12px;
+                min-width: 36px;
+            }
+            .tombol {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: auto;
+            } */
+
+            .container {
+        padding: 0 16px;
+    }
+
+    .header {
+        padding: 1.5rem 0;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    /* Tabs tetap horizontal dengan ukuran yang disesuaikan */
+    .tab {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    .tab.active {
+    color: white;
+    border-bottom-color: white;
+    font-size: 13px;
+}
+
+    .breadcrumb {
+        font-size: 12px;
+        gap: 8px;
+    }
+
+    .pagination-container {
+        gap: 4px;
+        padding: 0 16px;
+    }
+
+    .pagination-btn,
+    .pagination-nav {
+        padding: 8px 12px;
+        font-size: 12px;
+        min-width: 36px;
+    }
+    
+    .tombol {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: auto;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .card-content {
+        padding: 20px;
+    }
+
+    .card-image {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    /* Tabs dengan padding lebih kecil tapi tetap horizontal */
+    .tab {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .tab.active {
+    color: white;
+    border-bottom-color: white;
+    font-size: 14px;
+}
+
+}
+        .tombol {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* Base button styles */
+        .download-button,
+        .kerjakan-button, 
+        .lihat-button,
+        .pembahasan-button {
+            flex: 1;
+            min-width: 90px;
+            max-width: 120px;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Individual button colors */
+        .download-button {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+
+        .kerjakan-button {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+
+        .lihat-button {
+            background: linear-gradient(135deg, #6c757d, #545b62);
+            color: white;
+        }
+        .pembahasan-button {
+            background: #4a4a4a;
+            color: white;
+        }
+
+        /* Hover effects */
+        .download-button:hover {
+            background: linear-gradient(135deg, #0056b3, #004085);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+        }
+
+        .kerjakan-button:hover {
+            background: linear-gradient(135deg, #1e7e34, #155724);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+        }
+
+        .lihat-button:hover {
+            background: linear-gradient(135deg, #545b62, #3d4142);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
+        }
+
+        .pembahasan-button:hover {
+            background: linear-gradient(135deg, #545b62, #3d4142);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
+        }
+
+        /* Active state */
+        .download-button:active,
+        .kerjakan-button:active,
+        .lihat-button:active 
+        .pembahasan-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+        .card:nth-child(6) { animation-delay: 0.6s; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #1a1a1a;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 25px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #fff;
+            margin: 0;
+        }
+
+        .close {
+            color: #888;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            color: #fff;
+            background-color: #333;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .materi-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .materi-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .materi-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .materi-icon {
+            color: #ff6b35;
+            font-size: 14px;
+        }
+
+        .materi-subtitle {
+            color: #888;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+            padding-left: 24px;
+        }
+
+                                footer {
+    background-color: #141414;
+    color: white;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(28, 28, 28, 1) 0%, rgba(28, 28, 28, 0) 100%);
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    margin: 20px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    
+    justify-content: center;
+}
+
+.footer-section h3 {
+    color: white;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #bbb;
+    transition: color 0.3s;
+    font-size: 14px;
+}
+
+.footer-section ul li a:hover {
+    color: white;
+}
+
+.contact-list img {
+    width: 16px;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #444;
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icons a img {
+    width: 24px;
+    transition: opacity 0.3s;
+}
+
+.social-icons a img:hover {
+    opacity: 0.7;
+}
+
+/* Agar footer tetap responsif di layar kecil */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+.content.active {
+    margin: 0px 20px 0px 20px;
+}
+
+@media (max-width: 480px) {
+    .recent-materials {
+        margin: 30px 10px 10px 10px
+    }
+}
+.badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #000;
+            z-index: 3;
+            background: #f39c12;
+            color: #000;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .stat {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-icon {
+            width: 24px;
+            height: 24px;
+            margin: 0 auto 4px;
+            opacity: 0.7;
+        }
+
+        .stat-value {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .stat-label {
+            color: #888;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .download-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            width: 136px;
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        .kerjakan-button {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+            width: 136px;
+        }
+
+        .kerjakan-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.6);
+        }
+
+        .lihat-button {
+            background: rgba(255, 255, 255, 0.8);
+            color: #4a5568;
+            border: 2px solid #e2e8f0;
+            width: 136px;
+        }
+
+        .lihat-button:hover {
+            background: white;
+            border-color: #cbd5e0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        .pembahasan-button {
+            background: rgba(255, 255, 255, 0.8);
+            color: #4a5568;
+            border: 2px solid #e2e8f0;
+            width: 136px;
+        }
+        .pembahasan-button:hover{
+            background: white;
+            border-color: #cbd5e0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* .btn-full {
+            width: 100%;
+            background: linear-gradient(135deg, #2d3748, #4a5568);
+            color: white;
+            margin-top: 8px;
+        }
+
+        .btn-full:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 55, 72, 0.4);
+        } */
+
+        /* yang terbaru css nya */
+
+        .card {
+    background: linear-gradient(145deg, #2a2a2a 0%, #1f1f1f 100%);
+    border-radius: 16px;
+    padding: 24px;
+    width: 280px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin: 16px;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+    border-color: #444;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #4a90e2, #50e3c2);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Card Image */
+.card-image {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 4px 16px rgba(74, 144, 226, 0.3);
+    font-size: 24px;
+}
+
+/* Title and Subtitle */
+.title1 {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+}
+
+.subtitle {
+    color: #888;
+    font-size: 12px;
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+
+/* Stats Section */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.stat {
+    text-align: center;
+    flex: 1;
+}
+
+.stat-icon {
+    font-size: 20px;
+    margin-bottom: 4px;
+    opacity: 0.7;
+}
+
+.stat-value {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.stat-label {
+    color: #888;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Category Tags */
+.category {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.card-tag {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Category Classes */
+.card-tag.matematika {
+    background: #e74c3c;
+    color: #ffffff;
+}
+
+.card-tag.fisika {
+    background: #3498db;
+    color: #ffffff;
+}
+
+.card-tag.kimia {
+    background: #2ecc71;
+    color: #ffffff;
+}
+
+.card-tag.biologi {
+    background: #f39c12;
+    color: #000000;
+}
+
+.card-tag.free {
+    background: #27ae60;
+    color: #ffffff;
+}
+
+.card-tag.premium {
+    background: #f39c12;
+    color: #000000;
+}
+
+/* Coming Soon Badge */
+/* Buttons Section */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.button-row {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Primary Buttons (Download & Kerjakan) */
+.download-button {
+    background: linear-gradient(135deg, #4a90e2, #357abd);
+    color: white;
+}
+
+.download-button:hover {
+    background: linear-gradient(135deg, #357abd, #2968a3);
+    transform: translateY(-1px);
+}
+
+.kerjakan-button {
+    background: linear-gradient(135deg, #50e3c2, #3dccaa);
+    color: #000;
+}
+
+.kerjakan-button:hover {
+    background: linear-gradient(135deg, #3dccaa, #2eb398);
+    transform: translateY(-1px);
+}
+
+/* Secondary Buttons (Pembahasan & Lihat Materi) */
+.pembahasan-button,
+.lihat-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ccc;
+}
+
+.pembahasan-button:hover,
+.lihat-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+        max-width: 320px;
+        margin: 8px;
+    }
+    
+    .button-row {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Dark Theme Compatibility */
+body.dark-theme .card {
+    background: linear-gradient(145deg, #2a2a2a 0%, #1f1f1f 100%);
+}
+
+/* Animation for card entrance */
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: cardFadeIn 0.5s ease-out;
+}
+
+/* Disabled state for buttons */
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn:disabled:hover {
+    transform: none !important;
+}
+
+/* Focus states for accessibility */
+.btn:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+}
+
+.card:focus-within {
+    border-color: #4a90e2;
+}
+        :root {
+            --header-height: 70px;
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        * { 
+            box-sizing: border-box; 
+        }
+
+        body {
+            background-color: #141414; 
+            font-family: 'Poppins', sans-serif; 
+            color: white;
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.6;
+            padding-top: var(--header-height);
+        }
+
+        body.sidebar-open { 
+            overflow: hidden; 
+        }
+
+        html { 
+            scroll-behavior: smooth; 
+        }
+
+        /* ===== MAIN HEADER ===== */
+        .main-header {
+            background-color: #1c1c1c; 
+            padding: 0 20px;
+            height: var(--header-height);
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 1200px; 
+            margin: 0 auto; 
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+        }
+
+        .header-logo {
+            display: flex; 
+            align-items: center; 
+            text-decoration: none;
+            color: white; 
+            font-weight: 600; 
+            font-size: 20px;
+        }
+
+        .header-logo img { 
+            height: 40px; 
+            margin-right: 10px; 
+        }
+
+        /* ===== HAMBURGER MENU ===== */
+        .hamburger-menu {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            flex-direction: column;
+            gap: 4px;
+            z-index: 1200;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-menu .bar {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Animasi hamburger saat aktif */
+        .hamburger-menu.active .bar:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger-menu.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* ===== NAVIGASI DESKTOP ===== */
+        .main-nav { 
+            display: flex; 
+        }
+
+        .nav-links {
+            list-style: none; 
+            margin: 0; 
+            padding: 0;
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+        }
+
+        .nav-links li a {
+            color: #ccc; 
+            text-decoration: none; 
+            font-size: 14px;
+            font-weight: 500; 
+            padding: 8px 12px; 
+            border-radius: 6px;
+            white-space: nowrap; 
+            transition: all 0.2s ease;
+        }
+
+        .nav-links li a:hover { 
+            background-color: rgba(255, 255, 255, 0.1); 
+            color: white; 
+        }
+
+        /* ===== SIDEBAR NAVIGATION ===== */
+        .sidebar-nav {
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 500px; 
+            height: 100%;
+            background-color: #1a1a1a; 
+            box-shadow: 2px 0 15px rgba(0,0,0,0.5);
+            padding-top: 60px; 
+            transform: translateX(-100%);
+            transition: transform 0.4s ease-in-out; 
+            z-index: 1100; 
+            overflow-y: auto;
+            display: none; /* Sembunyikan di desktop */
+        }
+
+        .sidebar-nav.active { 
+            transform: translateX(0); 
+        }
+
+        .sidebar-nav .nav-links { 
+            flex-direction: column; 
+            align-items: stretch; 
+            gap: 0; 
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar-nav .nav-links li a { 
+            display: flex; 
+            gap: 15px; 
+            padding: 15px 30px; 
+            font-size: 16px; 
+            border-radius: 0;
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav .nav-links li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .sidebar-nav .nav-group-title {
+            padding: 20px 30px 10px; 
+            font-size: 12px; 
+            font-weight: 600;
+            color: #888; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+        }
+
+        .sidebar-nav .nav-group-title:not(:first-child){ 
+            border-top: 1px solid #333; 
+            margin-top: 10px; 
+        }
+
+        .sidebar-nav .sidebar-close-btn {
+            position: absolute; 
+            top: 15px; 
+            right: 20px; 
+            background: none; 
+            border: none;
+            color: #aaa; 
+            font-size: 36px; 
+            font-weight: 300; 
+            line-height: 1;
+            cursor: pointer; 
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .sidebar-nav .sidebar-close-btn:hover { 
+            color: white; 
+            transform: rotate(90deg); 
+        }
+
+        /* ===== SIDEBAR OVERLAY ===== */
+        .sidebar-overlay {
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); 
+            z-index: 1050;
+            opacity: 0; 
+            visibility: hidden; 
+            transition: opacity 0.4s, visibility 0.4s;
+        }
+
+        .sidebar-overlay.active { 
+            opacity: 1; 
+            visibility: visible; 
+        }
+
+        /* ===== EMOJI ICONS ===== */
+        .emoji-icon {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        /* ===== MEDIA QUERIES ===== */
+        /* Tablet dan Mobile */
+        @media screen and (max-width: 1024px) {
+            .main-nav { 
+                display: none; 
+            } /* Sembunyikan nav desktop */
+            
+            .hamburger-menu { 
+                display: flex; 
+            } /* Tampilkan hamburger */
+            
+            .sidebar-nav { 
+                display: block; 
+            } /* Aktifkan sidebar */
+        }
+
+        /* Mobile Medium */
+        @media screen and (max-width: 768px) {
+            .header-logo span {
+                font-size: 18px;
+            }
+            
+            .header-logo img {
+                height: 35px;
+            }
+            
+            .sidebar-nav {
+                width: 400px;
+            }
+        }
+
+        /* Mobile Small */
+        @media screen and (max-width: 480px) {
+            .sidebar-nav {
+                width: 260px;
+            }
+            
+            .header-logo span {
+                font-size: 16px;
+            }
+            
+            .header-logo img {
+                height: 30px;
+            }
+        }
+
+        /* ===== DEMO CONTENT STYLES (hapus saat implementasi) ===== */
+        .demo-content {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .demo-content h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .demo-content p {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .demo-section {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .demo-section h3 {
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+/* ----- ROOT VARIABLES ----- */
+:root {
+    --header-height: 70px;
+}
+
+/* ----- BODY ADJUSTMENT FOR FIXED HEADER ----- */
+body {
+    padding-top: var(--header-height);
+}
+
+body.sidebar-open { 
+    overflow: hidden; 
+}
+
+/* ----- MAIN HEADER ----- */
+.main-header {
+    background-color: #1c1c1c; 
+    padding: 0 20px;
+    height: var(--header-height);
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+    display: flex;
+    align-items: center;
+}
+
+.header-container {
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+/* ----- HEADER LOGO ----- */
+.header-logo {
+    display: flex; 
+    align-items: center; 
+    text-decoration: none;
+    color: white; 
+    font-weight: 600; 
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.header-logo img { 
+    height: 40px; 
+    margin-right: 10px; 
+}
+
+/* ----- HAMBURGER MENU ----- */
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1200;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Animasi hamburger saat aktif */
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ----- NAVIGASI DESKTOP (DEFAULT) ----- */
+.main-nav { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+}
+
+.nav-links {
+    list-style: none; 
+    margin: 0; 
+    padding: 0;
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
+}
+
+.nav-links li a {
+    color: #ccc; 
+    text-decoration: none; 
+    font-size: 14px;
+    font-weight: 500; 
+    padding: 8px 12px; 
+    border-radius: 6px;
+    white-space: nowrap; 
+    transition: all 0.2s ease;
+}
+
+.nav-links li a:hover { 
+    background-color: rgba(255, 255, 255, 0.1); 
+    color: white; 
+}
+
+/* ----- HEADER AUTH BUTTONS ----- */
+.header-auth { 
+    display: flex; 
+    gap: 10px; 
+}
+
+.auth-btn {
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.auth-btn.login {
+    color: #ccc;
+    background-color: transparent;
+    border: 1px solid #555;
+}
+
+.auth-btn.login:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-color: #888;
+}
+
+.auth-btn.register {
+    color: white;
+    background-color: #6A0DAD;
+    border: 1px solid #6A0DAD;
+}
+
+.auth-btn.register:hover {
+    background-color: #7D2ED1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(106, 13, 173, 0.5);
+}
+
+/* ----- SIDEBAR & MOBILE NAVIGATION ----- */
+.sidebar-nav {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 500px; 
+    height: 100%;
+    background-color: #1a1a1a; 
+    box-shadow: 2px 0 15px rgba(0,0,0,0.5);
+    padding-top: 60px; 
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-in-out; 
+    z-index: 1100; 
+    overflow-y: auto;
+    display: none; /* Sembunyikan di desktop */
+}
+
+.sidebar-nav.active { 
+    transform: translateX(0); 
+}
+
+.sidebar-nav .nav-links { 
+    flex-direction: column; 
+    align-items: stretch; 
+    gap: 0; 
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-nav .nav-links li a { 
+    display: flex; 
+    gap: 15px; 
+    padding: 15px 30px; 
+    font-size: 16px; 
+    border-radius: 0;
+    color: #ccc;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.sidebar-nav .nav-links li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.sidebar-nav .nav-group-title {
+    padding: 20px 30px 10px; 
+    font-size: 12px; 
+    font-weight: 600;
+    color: #888; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+}
+
+.sidebar-nav .nav-group-title:not(:first-child){ 
+    border-top: 1px solid #333; 
+    margin-top: 10px; 
+}
+
+.sidebar-nav .sidebar-close-btn {
+    position: absolute; 
+    top: 15px; 
+    right: 20px; 
+    background: none; 
+    border: none;
+    color: #aaa; 
+    font-size: 36px; 
+    font-weight: 300; 
+    line-height: 1;
+    cursor: pointer; 
+    transition: color 0.3s, transform 0.3s;
+}
+
+.sidebar-nav .sidebar-close-btn:hover { 
+    color: white; 
+    transform: rotate(90deg); 
+}
+
+/* ----- SIDEBAR AUTH BUTTONS ----- */
+.sidebar-auth {
+    padding: 20px 30px;
+    border-bottom: 1px solid #333;
+    margin-bottom: 10px;
+}
+
+.sidebar-auth .auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-left: 0;
+}
+
+.sidebar-auth .auth-btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* ----- SIDEBAR OVERLAY ----- */
+.sidebar-overlay {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: 1050;
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.4s, visibility 0.4s;
+}
+
+.sidebar-overlay.active { 
+    opacity: 1; 
+    visibility: visible; 
+}
+
+/* ----- EMOJI ICON ----- */
+.emoji-icon {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+/* ----- MEDIA QUERIES ----- */
+@media screen and (max-width: 1024px) {
+    .main-nav { 
+        display: none; 
+    } /* Sembunyikan nav desktop */
+    
+    .hamburger-menu { 
+        display: flex; 
+    } /* Tampilkan hamburger */
+    
+    .sidebar-nav { 
+        display: block; 
+    } /* Aktifkan sidebar */
+}
+
+/* Responsive untuk layar yang lebih kecil */
+@media screen and (max-width: 768px) {
+    .header-logo span {
+        font-size: 18px;
+    }
+    
+    .header-logo img {
+        height: 35px;
+    }
+    
+    .sidebar-nav {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sidebar-nav {
+        width: 260px;
+    }
+    
+    .header-logo span {
+        font-size: 16px;
+    }
+    
+    .header-logo img {
+        height: 30px;
+    }
+}
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <a href="../" class="header-logo">
+                <img src="UMT-Logo - Copy (4).png" alt="UMT Academy Logo">
+                <span>UMTacademy</span>
+            </a>
+
+            <!-- Navigasi Desktop -->
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="../Materi-Belajar/">Materi Belajar</a></li>
+                    <li><a href="../Video-Pembelajaran/">Video</a></li>
+                    <li><a href="../Bank-Soal/">Bank Soal</a></li>
+                    <li><a href="../Perpustakaan/">Perpustakaan</a></li>
+                    <li><a href="../UMT-Lab/">UMT Lab</a></li>
+                    <li><a href="#">Tryout</a></li>
+                    <li><a href="../Tanya-UMT/">TanyaUMT</a></li>
+                    <li><a href="../Forum-Belajar-UMT/">Forum</a></li>
+                    <li><a href="../Arsip-Live-Class/">Live Class</a></li>
+                </ul>
+                <div class="header-auth">
+                    <a href="../login.html" class="auth-btn login">Masuk</a>
+                    <a href="../Form-Pendaftaran.html" class="auth-btn register">Daftar</a>
+                </div>
+            </nav>
+
+            <!-- Hamburger Menu untuk Mobile -->
+            <button class="hamburger-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Sidebar Navigation untuk Mobile -->
+    <nav class="sidebar-nav">
+        <button class="sidebar-close-btn">×</button>
+        <div class="sidebar-auth">
+            <div class="auth-buttons">
+                <a href="../login.html" class="auth-btn login">Masuk</a>
+                <a href="../Form-Pendaftaran.html" class="auth-btn register">Daftar</a>
+            </div>
+        </div>
+
+
+        <ul class="nav-links">
+            <li class="nav-group-title">Konten Inti</li>
+            <li><a href="../Materi-Belajar/"><span class="emoji-icon">📘</span>Materi Belajar</a></li>
+            <li><a href="../Video-Pembelajaran/"><span class="emoji-icon">🎥</span>Video Pembelajaran</a></li>
+            <li><a href="../UMT-Lab/"><span class="emoji-icon">🔬</span>UMT Lab</a></li>
+            <li><a href="../Perpustakaan/"><span class="emoji-icon">📚</span>Perpustakaan</a></li>
+
+            <li class="nav-group-title">Alat Belajar</li>
+            <li><a href="../Bank-Soal/"><span class="emoji-icon">📝</span>Bank Soal</a></li>
+            <li><a href="#"><span class="emoji-icon">✏️</span>Tryout</a></li>
+            <li><a href="../Tanya-UMT/"><span class="emoji-icon">❓</span>TanyaUMT</a></li>
+
+            <li class="nav-group-title">Komunitas & Info</li>
+            <li><a href="../Forum-Belajar-UMT/"><span class="emoji-icon">💬</span>Forum Belajar</a></li>
+            <li><a href="../Arsip-Live-Class/"><span class="emoji-icon">🎭</span>Arsip Live Class</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Overlay untuk Sidebar -->
+    <div class="sidebar-overlay"></div>
+    <header class="header">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="../" class="breadcrumb-link">Home</a>
+                <span class="breadcrumb-arrow">›</span>
+                <div class="dropdown" id="umtDropdown">
+                    <span class="dropdown-toggle">
+                        Tryout
+                    </span>
+                </div>
+            </nav>
+            <h1 class="title">Tryout UMT</h1>
+        </div>
+
+    </header>
+
+    <main class="container">
+        <div class="tabs" >
+            <button class="tab active">Semua</button>
+            <button class="tab" data-tab="UTBK">UTBK</button>
+            <button class="tab" data-tab="olimpiade">Olimpiade</button>
+            <button class="tab" data-tab="cpns-kedinasan">CPNS & Kedinasan</button>
+            <button class="tab" data-tab="kompetisi-umt">Kompetisi UMT</button>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Cari Tryout..." id="searchInput">
+            <div class="search-icon">🔍</div>
+        </div>
+
+        <div class="container2">
+            <div class="cards-grid" id="cardsGrid">
+            <!-- Cards akan diisi oleh JavaScript -->
+        </div>
+        </div>
+
+        <div class="pagination-container" id="paginationContainer">
+            <!-- Pagination akan diisi oleh JavaScript -->
+        </div>
+    </main>
+
+    <div id="materiModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle" class="modal-title">Materi yang Diuji</h2>
+                <span class="close" onclick="closeMateriModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Tentang Kami</h3>
+                    <ul>
+                        <li><a href="https://www.umt6174.site/tentang-umt" target="_blank">Tentang UMT</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Produk UMT</h3>
+                    <ul>
+                        <li><a href="../UMT-Lab/">UMT Lab</a></li>
+                        <li><a href="../Materi-Belajar/">Materi Pembelajaran</a></li>
+                        <li><a href="../Video-Pembelajaran/">Video Pembelajaran</a></li>
+                        <li><a href="../tryout/">Tryout</a></li>
+                        <li><a href="../Tanya-UMT/">TanyaUMT</a></li>
+                        <li><a href="../Bank-Soal/">Bank Soal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Punya Pertanyaan?</h3>
+                    <ul class="contact-list">
+                        <li><a href="https://ig.me/m/umt.6174"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" target="_blank">@umt.6174</a></li>
+                        <li><a href="mailto:business@gradient.academy"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" target="_blank"> umt.math.6174@gmail.com</a></li>
+                        <li><a href="https://wa.me/6282189524610"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" target="_blank"> +6282189524610</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 UMT Academy. All rights reserved.</p>
+                <div class="social-icons">
+                    <a href="https://youtube.com/@umt6174?si=Cdivet0_By8EWJ8v"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" target="_blank"></a>
+                    <a href="https://www.instagram.com/umt.6174/"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" target="_blank"></a>
+                    <a href="https://www.tiktok.com/@umt6174?is_from_webapp=1&sender_device=pc"><img src="https://cdn-icons-png.flaticon.com/512/3046/3046126.png" alt="TikTok" target="_blank"></a>
+                </div>
+            </div>
+    </footer>
+
+
+    <script>
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const sidebarNav = document.querySelector('.sidebar-nav');
+        const sidebarOverlay = document.querySelector('.sidebar-overlay');
+        const sidebarCloseBtn = document.querySelector('.sidebar-close-btn');
+        const body = document.body;
+
+        function toggleSidebar() {
+            sidebarNav.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+            body.classList.toggle('sidebar-open');
+        }
+
+        // Pastikan semua elemen ada sebelum menambahkan listener
+        if (hamburgerMenu && sidebarNav && sidebarOverlay && sidebarCloseBtn) {
+            hamburgerMenu.addEventListener('click', toggleSidebar);
+            sidebarOverlay.addEventListener('click', toggleSidebar);
+            sidebarCloseBtn.addEventListener('click', toggleSidebar);
+        }
+        // Data kartu
+const cardsData = [
+    // UTBK
+    {
+        id: 1,
+        title: "Tryout SNBT PK & PM #1 by UMT",
+        author: "Tim UMT",
+        category: "kompetisi-umt",
+        isComingSoon: false,
+        free: "free",
+        image: "📝",
+        download: "#",
+        kerjakan: "Kompetisi/Form-pendaftaran.html",
+        nama: 'Tryout SNBT PK & PM #1 by UMT',
+        indeks: '',
+        pembahasan: '#',
+        durasi: '50',
+        totalsoal: '15'
+    },
+
+    {
+        id: 1,
+        title: "Tryout SNBT PK & PM #2 by UMT",
+        author: "Tim UMT",
+        category: "UTBK",
+        isComingSoon: false,
+        free: "free",
+        image: "📝",
+        download: "#",
+        kerjakan: "https://timer.addonforge.com/timer/1FAIpQLSfYlyXanUdF3KtXSkxRj2pyA-bWp2KaKWf-AW7zbdnUJPYZUA",
+        nama: 'Tryout SNBT PK & PM #2 by UMT',
+        indeks: '',
+        pembahasan: 'https://drive.google.com/file/d/1es7dlRopoQq9WI5y1jqLF7CZSC8xL-GF/view?usp=drive_link',
+        durasi: '50',
+        totalsoal: '15'
+    },
+
+    {
+        id: 1,
+        title: "Tryout SNBT PK & PM #3 by UMT",
+        author: "Tim UMT",
+        category: "UTBK",
+        isComingSoon: false,
+        free: "free",
+        image: "📝",
+        download: "#",
+        kerjakan: "https://timer.addonforge.com/timer/1FAIpQLScL2n7zrn4kuVko5TNrlWpxDKjZz7Lx8o0Xuu0Ve7C8hv-z2Q",
+        nama: 'Tryout SNBT PK & PM #3 by UMT',
+        indeks: '',
+        pembahasan: '#',
+        durasi: '40',
+        totalsoal: '10'
+    },
+
+    {
+        id: 2,
+        title: "Tryout OSK Matematika",
+        author: "Tim UMT",
+        category: "olimpiade",
+        isComingSoon: true,
+        free: "free",
+        image: "📝",
+        download: "#",
+        kerjakan: "#",
+        nama: "Tryout OSK Matematika",
+        indeks: '',
+        pembahasan: '#'
+    },
+
+    // cpns-kedinasan
+    
+    {
+        id: 3,
+        title: "Tryout TIU Kedinasan & CPNS",
+        author: "Tim UMT",
+        category: "cpns-kedinasan",
+        isComingSoon: true,
+        free: "free",
+        image: "📝",
+        download: "#",
+        kerjakan: "#",
+        nama: "Tryout TIU Kedinasan & CPNS",
+        indeks: '',
+        pembahasan: '#'
+    },
+
+    // kompetisi-umt
+    {
+        id: 4,
+        title: "Kompetisi Matematika BY UMT",
+        author: "Tim UMT",
+        category: "kompetisi-umt",
+        isComingSoon: true,
+        free: "free",
+        image: "📝",
+        download: "#",
+        kerjakan: "#",
+        nama: "Kompetisi Matematika BY UMT",
+        indeks: '',
+        pembahasan: '#'
+    },
+    {
+        id: 4,
+        title: "Kompetisi Matematika BY UMT",
+        author: "Tim UMT",
+        category: "kompetisi-umt",
+        isComingSoon: true,
+        free: "free",
+        image: "📝",
+        download: "#",
+        kerjakan: "#",
+        nama: "Kompetisi Matematika BY UMT",
+        indeks: '',
+        pembahasan: '#'
+    }
+];
+
+// Variabel global
+let currentPage = 1;
+let filteredCards = [...cardsData];
+const cardsPerPage = 6;
+
+// Elemen DOM
+const cardsGrid = document.getElementById('cardsGrid');
+const paginationContainer = document.getElementById('paginationContainer');
+const searchInput = document.getElementById('searchInput');
+const tabs = document.querySelectorAll('.tab');
+
+// Fungsi untuk membuat HTML kartu
+function createCardHTML(card) {
+    const categoryConfig = {
+        'UTBK': { class: 'tag-UTBK', text: 'UTBK' },
+        'olimpiade': { class: 'tag-olimpiade', text: 'Olimpiade' },
+        'cpns-kedinasan': { class: 'tag-CPNS-KEDINASAN', text: 'CPNS & Kedinasan' },
+        'kompetisi-umt': { class: 'tag-kompetisi-umt', text: 'Kompetisi UMT' },
+    };
+
+    const freeConfig = {
+        'free': { class: 'tag-free', text: 'Gratis' },
+        'premium': { class: 'tag-premium', text: 'Premium' }
+    };
+
+    const categoryInfo = categoryConfig[card.category] || { class: 'tag-UTBK', text: 'Unknown' };
+    const freeInfo = freeConfig[card.free] || { class: 'tag-free', text: 'Gratis' };
+
+    return `
+        <div class="card" data-category="${card.category}">
+            <div class="card-content">
+                <div class="card-image">
+                    <span>${card.image}</span>
+                </div>
+                <h3 class="title1">${card.title}</h3>
+                <p class="subtitle">oleh ${card.author}</p>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-value">${card.durasi}</div>
+                        <div class="stat-label">Menit</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-value">${card.totalsoal}</div>
+                    <div class="stat-label">Soal</div>
+                </div>
+            </div>
+                <div class="category">
+                    <span class="card-tag ${categoryInfo.class}">${categoryInfo.text}</span>
+                    <span class="card-tag ${freeInfo.class}">${freeInfo.text}</span>
+                </div>
+                ${card.isComingSoon ? '<div class="badge">Segera Hadir</div>' : ''}
+                <div class="buttons">
+                    <div class="button-row">
+                        <button class="btn download-button data-link="${card.download}">Pembahasan</button>
+                        <button class="btn kerjakan-button" data-link="${card.kerjakan}">Kerjakan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Fungsi untuk menampilkan loading state
+function showLoading() {
+    cardsGrid.innerHTML = `
+        <div class="loading-state">
+            <div class="loading-spinner"></div>
+            <p>Memuat data...</p>
+        </div>
+    `;
+}
+
+// Fungsi untuk menampilkan empty state
+function showEmptyState() {
+    cardsGrid.innerHTML = `
+        <div class="empty-state">
+            <div class="empty-state-icon">🔍</div>
+            <h3 class="empty-state-title">Tidak ada hasil ditemukan</h3>
+            <p>Coba ubah kata kunci pencarian atau pilih kategori lain</p>
+        </div>
+    `;
+}
+
+// Fungsi untuk merender kartu
+function renderCards() {
+    if (filteredCards.length === 0) {
+        showEmptyState();
+        paginationContainer.innerHTML = '';
+        return;
+    }
+
+    const startIndex = (currentPage - 1) * cardsPerPage;
+    const endIndex = startIndex + cardsPerPage;
+    const cardsToShow = filteredCards.slice(startIndex, endIndex);
+
+    cardsGrid.innerHTML = cardsToShow.map(card => createCardHTML(card)).join('');
+
+    // Event listener untuk tombol Download
+    const downloadElements = cardsGrid.querySelectorAll('.download-button');
+    downloadElements.forEach((button, index) => {
+        button.style.animationDelay = `${index * 0.1}s`;
+        
+        button.addEventListener('click', () => {
+            const link = button.getAttribute('data-link');
+            if (link && link !== '#') {
+                window.open(link, '_blank');
+            } else {
+                alert('Link belum tersedia');
+            }
+        });
+    });
+
+    // Event listener untuk tombol Kerjakan Soal
+    const kerjakanElements = cardsGrid.querySelectorAll('.kerjakan-button');
+    kerjakanElements.forEach((button, index) => {
+        button.style.animationDelay = `${index * 0.1}s`;
+        
+        button.addEventListener('click', () => {
+            const link = button.getAttribute('data-link');
+            if (link && link !== '#') {
+                window.open(link, '_blank');
+            } else {
+                alert('Link belum tersedia');
+            }
+        });
+    });
+
+    const pembahasanElements = cardsGrid.querySelectorAll('.pembahasan-button');
+    pembahasanElements.forEach((button, index) => {
+        button.style.animationDelay = `${index * 0.1}s`;
+        
+        button.addEventListener('click', () => {
+            const link = button.getAttribute('data-link');
+            if (link && link !== '#') {
+                window.open(link, '_blank');
+            } else {
+                alert('Link belum tersedia');
+            }
+        });
+    });
+
+    // Event listener untuk tombol Lihat Materi - PERBAIKAN UTAMA
+    const lihatElements = cardsGrid.querySelectorAll('.lihat-button');
+    lihatElements.forEach((button, index) => {
+        button.style.animationDelay = `${index * 0.1}s`;
+        
+        button.addEventListener('click', () => {
+            const nama = button.getAttribute('data-nama');
+            const indeks = button.getAttribute('data-indeks');
+            
+            if (indeks && indeks !== '') {
+                openMateriModal(nama, indeks);
+            } else {
+                alert('Materi belum tersedia');
+            }
+        });
+    });
+}
+
+function openMateriModal(title, materiId) {
+    const modal = document.getElementById('materiModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
+    
+    modalTitle.textContent = 'Materi yang Diuji';
+    
+    const materiContent = getMateriContent(materiId);
+    modalBody.innerHTML = materiContent;
+    
+    modal.style.display = 'block';
+}
+
+function closeMateriModal() {
+    document.getElementById('materiModal').style.display = 'none';
+}
+
+function getMateriContent(materiId) {
+    const materiData = {
+    // UTBK
+                'pas-matematika-1': `
+                    <div class="materi-item">
+                        <div class="materi-title">
+                            <span class="materi-icon">⚡</span>
+                            Fungsi, Persamaan, dan Pertidaksamaan Nilai Mutlak
+                        </div>
+                        <div class="materi-subtitle">
+                            Subbab: Persamaan Nilai Mutlak Linear I, Pertidaksamaan Nilai Mutlak Linear
+                        </div>
+                    </div>
+                `,
+
+                // olimpiade
+        
+                'matematika-olimpiade-1': `More actions
+                    <div class="materi-item">
+                        <div class="materi-title">
+                            <span class="materi-icon">⚡</span>
+                            Relasi dan Fungsi
+                        </div>
+                        <div class="materi-subtitle">
+                            Subbab: Pengantar Relasi, Jenis-jenis Relasi, Fungsi sebagai Relasi Khusus, Domain-Kodomain-Range, Notasi dan Representasi Fungsi
+                        </div>
+                    </div>
+                `,
+                // cpns-kedinasan 
+
+                'matematika-cpns-kedinasan-1': `
+                    <div class="materi-item">
+                        <div class="materi-title">
+                            <span class="materi-icon">⚡</span>
+                            Relasi dan Fungsi
+                        </div>
+                        <div class="materi-subtitle">
+                            Subbab: Pengantar Relasi, Jenis-jenis Relasi, Fungsi sebagai Relasi Khusus, Domain-Kodomain-Range, Notasi dan Representasi Fungsi
+                        </div>
+                    </div>
+                `,
+                // kompetisi-umt
+
+                'matematika-kompetisi-umt-1': `
+                    <div class="materi-item">
+                        <div class="materi-title">
+                            <span class="materi-icon">⚡</span>
+                            Relasi dan Fungsi
+                        </div>
+                        <div class="materi-subtitle">
+                            Subbab: Pengantar Relasi, Jenis-jenis Relasi, Fungsi sebagai Relasi Khusus, Domain-Kodomain-Range, Notasi dan Representasi Fungsi
+                        </div>
+                    </div>
+                `
+    };
+    
+    return materiData[materiId] || `
+        <div class="materi-item">
+            <div class="materi-title">
+                <span class="materi-icon">⚡</span>
+                Materi Belum Tersedia
+            </div>
+            <div class="materi-subtitle">
+                Materi untuk item ini sedang dalam tahap pengembangan
+            </div>
+        </div>
+    `;
+}
+
+// Close modal when clicking outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById('materiModal');
+    if (event.target == modal) {
+        closeMateriModal();
+    }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeMateriModal();
+    }
+});
+
+// Fungsi untuk membuat pagination
+function createPagination() {
+    const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+    
+    if (totalPages <= 1) {
+        paginationContainer.innerHTML = '';
+        return;
+    }
+
+    let paginationHTML = '';
+
+    // Tombol Previous
+    const prevDisabled = currentPage === 1 ? 'disabled' : '';
+    paginationHTML += `
+        <button class="pagination-nav ${prevDisabled}" onclick="goToPage(${currentPage - 1})" ${prevDisabled ? 'disabled' : ''}>
+            ← Sebelumnya
+        </button>
+    `;
+
+    // Logic untuk menampilkan nomor halaman
+    const maxVisiblePages = 5;
+    
+    if (totalPages <= maxVisiblePages) {
+        for (let i = 1; i <= totalPages; i++) {
+            const activeClass = i === currentPage ? 'active' : '';
+            paginationHTML += `
+                <button class="pagination-btn ${activeClass}" onclick="goToPage(${i})">
+                    ${i}
+                </button>
+            `;
+        }
+    } else {
+        if (currentPage <= 3) {
+            for (let i = 1; i <= 3; i++) {
+                const activeClass = i === currentPage ? 'active' : '';
+                paginationHTML += `
+                    <button class="pagination-btn ${activeClass}" onclick="goToPage(${i})">
+                        ${i}
+                    </button>
+                `;
+            }
+            paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+            paginationHTML += `
+                <button class="pagination-btn" onclick="goToPage(${totalPages})">
+                    ${totalPages}
+                </button>
+            `;
+        } else if (currentPage >= totalPages - 2) {
+            paginationHTML += `
+                <button class="pagination-btn" onclick="goToPage(1)">1</button>
+            `;
+            paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+            for (let i = totalPages - 2; i <= totalPages; i++) {
+                const activeClass = i === currentPage ? 'active' : '';
+                paginationHTML += `
+                    <button class="pagination-btn ${activeClass}" onclick="goToPage(${i})">
+                        ${i}
+                    </button>
+                `;
+            }
+        } else {
+            paginationHTML += `
+                <button class="pagination-btn" onclick="goToPage(1)">1</button>
+            `;
+            paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+            
+            for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+                const activeClass = i === currentPage ? 'active' : '';
+                paginationHTML += `
+                    <button class="pagination-btn ${activeClass}" onclick="goToPage(${i})">
+                        ${i}
+                    </button>
+                `;
+            }
+            
+            paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+            paginationHTML += `
+                <button class="pagination-btn" onclick="goToPage(${totalPages})">
+                    ${totalPages}
+                </button>
+            `;
+        }
+    }
+
+    // Tombol Next
+    const nextDisabled = currentPage === totalPages ? 'disabled' : '';
+    paginationHTML += `
+        <button class="pagination-nav ${nextDisabled}" onclick="goToPage(${currentPage + 1})" ${nextDisabled ? 'disabled' : ''}>
+            Selanjutnya →
+        </button>
+    `;
+
+    paginationContainer.innerHTML = paginationHTML;
+}
+
+// Fungsi untuk pindah halaman
+function goToPage(page) {
+    const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+    
+    if (page < 1 || page > totalPages || page === currentPage) {
+        return;
+    }
+    
+    // Simulate loading delay for better UX
+    currentPage = page;
+    renderCards();
+    createPagination();
+            
+    // Scroll ke atas setelah pindah halaman
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Fungsi untuk filter berdasarkan kategori - DIPERBAIKI
+function filterByCategory(category) {
+    setTimeout(() => {
+        if (!category || category === 'semua') {
+            filteredCards = [...cardsData];
+        } else {
+            filteredCards = cardsData.filter(card => card.category === category);
+        }
+        currentPage = 1;
+        renderCards();
+        createPagination();
+    }, 300);
+}
+
+// Fungsi untuk pencarian
+function searchCards(query) {
+    const searchTerm = query.toLowerCase().trim();
+    
+    showLoading();
+    
+    setTimeout(() => {
+        if (searchTerm === '') {
+            const activeTab = document.querySelector('.tab.active');
+            const activeCategory = activeTab.getAttribute('data-tab');
+            filterByCategory(activeCategory);
+        } else {
+            filteredCards = cardsData.filter(card => 
+                card.title.toLowerCase().includes(searchTerm) ||
+                card.author.toLowerCase().includes(searchTerm)
+            );
+            currentPage = 1;
+            renderCards();
+            createPagination();
+        }
+    }, 300);
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Render initial cards
+    renderCards();
+    createPagination();
+
+    // Tab navigation - DIPERBAIKI
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            this.classList.add('active');
+            
+            // Filter cards based on selected tab
+            const category = this.getAttribute('data-tab') || 'semua';
+            filterByCategory(category);
+        });
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', function(e) {
+        const query = e.target.value;
+        searchCards(query);
+    });
+
+    // Dropdown functionality
+    const dropdown = document.getElementById('umtDropdown');
+    const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+    
+    dropdownToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
+
+    // Close dropdown when pressing Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            dropdown.classList.remove('active');
+        }
+    });
+
+    // Keyboard navigation for pagination
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft' && currentPage > 1) {
+            goToPage(currentPage - 1);
+        } else if (e.key === 'ArrowRight') {
+            const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+            if (currentPage < totalPages) {
+                goToPage(currentPage + 1);
+            }
+        }
+    });
+
+    // Handle search with Enter key
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const query = e.target.value;
+            searchCards(query);
+        }
+    });
+});
+
+// Function to handle window resize for responsive design
+window.addEventListener('resize', function() {
+    // Recalculate pagination if needed
+    createPagination();
+});
+
+// Function to add smooth scroll behavior
+function smoothScrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Performance optimization: Debounce search function
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Apply debouncing to search
+const debouncedSearch = debounce(searchCards, 300);
+
+// Update search input event listener with debounced version
+searchInput.addEventListener('input', function(e) {
+    const query = e.target.value;
+    debouncedSearch(query);
+});
+
+// Add loading state management
+let isLoading = false;
+
+function setLoadingState(loading) {
+    isLoading = loading;
+    if (loading) {
+        document.body.style.cursor = 'wait';
+    } else {
+        document.body.style.cursor = 'default';
+    }
+}
+
+// Enhanced error handling
+function handleError(error) {
+    console.error('Error:', error);
+    cardsGrid.innerHTML = `
+        <div class="empty-state">
+            <div class="empty-state-icon">⚠️</div>
+            <h3 class="empty-state-title">Terjadi Kesalahan</h3>
+            <p>Mohon coba lagi dalam beberapa saat</p>
+        </div>
+    `;
+}
+
+// Initialize tooltips or other interactive elements if needed
+function initializeInteractiveElements() {
+    // Add any additional interactive features here
+    console.log('Bank Soal UMT Platform initialized successfully');
+}
+
+// Call initialization
+initializeInteractiveElements();
+    </script>
+</body>
+</html>
+            
