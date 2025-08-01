@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lupa Password - UMTacademy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="icon" type="image/png" href="UMT-Logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-purple: #6A0DAD;
+            --secondary-purple: #7D2ED1;
+            --dark-bg: #141414;
+            --card-bg: #1c1c1c;
+            --text-primary: #ffffff;
+            --text-secondary: #ccc;
+            --border-color: #333;
+            --error-color: #f44336;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        #forgot-password-container {
+            background: #141414;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 50px 40px;
+            width: 90%;
+            max-width: 480px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 80px rgba(106, 13, 173, 0.1);
+            position: relative;
+            z-index: 1;
+            animation: slideInUp 0.8s ease-out;
+            text-align: center;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-section h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .header-section p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+            text-align: left;
+        }
+
+        .input-label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 16px 20px 16px 50px; /* Tambah padding kiri untuk ikon */
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus {
+            border-color: var(--primary-purple);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 0 4px rgba(106, 13, 173, 0.1);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--secondary-purple) 100%);
+            border: none;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(106, 13, 173, 0.4);
+        }
+
+        .back-to-login {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+
+        .back-to-login a {
+            color: var(--primary-purple);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        #error-message {
+            color: var(--error-color);
+            background: rgba(244, 67, 54, 0.1);
+            border: 1px solid rgba(244, 67, 54, 0.3);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none; /* Sembunyi secara default */
+            text-align: left;
+        }
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 28px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: var(--text-primary);
+    transform: scale(1.2);
+}
+    </style>
+</head>
+<body>
+    <div id="forgot-password-container">
+        <a href="index.html" class="close-btn" title="Keluar">&times;</a>
+        <div class="header-section">
+            <h2>Lupa Password?</h2>
+            <p>Masukkan nama lengkap dan email Anda yang terdaftar untuk meminta reset password.</p>
+        </div>
+
+        <form id="forgot-password-form">
+            <div class="input-group">
+                <label for="fullName" class="input-label">Nama Lengkap</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="fullName" placeholder="Masukkan nama lengkap Anda" required>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label for="email" class="input-label">Email</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" placeholder="Masukkan email terdaftar Anda" required>
+                </div>
+            </div>
+            
+            <div id="error-message"></div>
+
+            <button type="submit">Kirim Permintaan Reset</button>
+        </form>
+
+        <div class="back-to-login">
+            <a href="login.html"><i class="fas fa-arrow-left"></i> Kembali ke Login</a>
+        </div>
+    </div>
+
+    <script>
+        const forgotPasswordForm = document.getElementById('forgot-password-form');
+        const errorMessage = document.getElementById('error-message');
+
+        forgotPasswordForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah form dari reload halaman
+
+            // 1. Ganti dengan nomor WhatsApp Admin (format: 62xxxx)
+            const adminWhatsAppNumber = '6285961160545'; // <-- GANTI NOMOR ANDA DI SINI
+
+            // 2. Ambil data dari input form
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            // 3. Validasi dasar (pastikan tidak kosong)
+            if (!fullName || !email) {
+                errorMessage.textContent = 'Harap isi semua kolom yang tersedia.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            // Sembunyikan pesan error jika sudah terisi
+            errorMessage.style.display = 'none';
+
+            // 4. Buat template pesan untuk WhatsApp
+            const messageText = `
+Halo Admin UMTacademy,
+
+Saya mengajukan permohonan untuk reset password.
+Berikut adalah data akun saya:
+
+👤 Nama Lengkap: ${fullName}
+📧 Email: ${email}
+
+Mohon bantuannya untuk diproses lebih lanjut.
+Terima kasih.
+            `.trim();
+
+            // 5. Buat URL WhatsApp dan alihkan pengguna
+            const encodedMessage = encodeURIComponent(messageText);
+            const whatsappURL = `https://wa.me/${adminWhatsAppNumber}?text=${encodedMessage}`;
+            
+            // Buka WhatsApp di tab baru
+            window.open(whatsappURL, '_blank');
+            
+            // Opsional: Beri notifikasi pada pengguna dan reset form
+            // alert('Anda akan dialihkan ke WhatsApp untuk mengirim permintaan. Silakan tekan "Send".');
+            forgotPasswordForm.reset();
+        });
+    </script>
+</body>
+</html>
