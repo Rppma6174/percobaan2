@@ -391,7 +391,7 @@ button[type="submit"]:disabled {
 
         // Cek jika pengguna sudah login, langsung arahkan
         if (sessionStorage.getItem('sessionToken')) {
-            window.location.href = 'tryout.html';
+            window.location.href = 'index.html';
         }
 
         function getDeviceFingerprint() {
@@ -435,7 +435,7 @@ button[type="submit"]:disabled {
                     sessionStorage.setItem('sessionEmail', result.email);
                     
                     // **PENTING: Arahkan ke halaman rahasia**
-                    window.location.href = 'tryout.html';
+                    window.location.href = 'index.html';
                 } else {
                     throw new Error(result.message || 'Terjadi kesalahan.');
                 }
