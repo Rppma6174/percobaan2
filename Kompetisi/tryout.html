@@ -235,6 +235,63 @@
     <script src="tryout-database.js"></script>
 
     <script>
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyP3jpWgs6ikQcA-9MsInRZYbLFQsshjxgo22twwXrzpACSPV9BREogrKUd-60crXV_mg/exec'; 
+        const LOGIN_PAGE_URL = 'login.html'; // Arahkan ke halaman login di folder utama
+        const HEARTBEAT_INTERVAL = 10000; 
+        let heartbeatIntervalId = null;
+
+        (function gatekeeper() {
+            const token = sessionStorage.getItem('sessionToken');
+            const email = sessionStorage.getItem('sessionEmail');
+
+            if (!token || !email) {
+                window.location.href = LOGIN_PAGE_URL;
+                return; 
+            }
+
+            // Tampilkan konten
+            document.getElementById('protected-content').classList.remove('hidden');
+            
+            // Personalisasi sapaan
+            document.getElementById('user-email').textContent = email;
+            
+            // Mulai verifikasi sesi
+            startSessionHeartbeat(token, email);
+        })();
+
+        function startSessionHeartbeat(token, email) {
+            if (heartbeatIntervalId) clearInterval(heartbeatIntervalId);
+            verifySession(token, email); 
+            heartbeatIntervalId = setInterval(() => verifySession(token, email), HEARTBEAT_INTERVAL);
+        }
+
+        async function verifySession(token, email) {
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ action: 'check_session', token: token, email: email })
+                });
+                const result = await response.json();
+                if (!result.isValid) {
+                    forceLogout("Sesi Anda telah berakhir karena akun ini telah login di perangkat lain.");
+                }
+            } catch (error) {
+                console.error("Heartbeat check failed:", error);
+            }
+        }
+
+        function logout() {
+            sessionStorage.removeItem('sessionToken');
+            sessionStorage.removeItem('sessionEmail');
+            forceLogout("Anda telah berhasil logout.");
+        }
+
+        function forceLogout(message) {
+            if (heartbeatIntervalId) clearInterval(heartbeatIntervalId);
+            alert(message);
+            window.location.href = '../index.html';
+        }
         // --- Variabel Global ---
         let userData = {};
         let activityLog = { startTime: null, endTime: null, timePerQuestion: [] };
